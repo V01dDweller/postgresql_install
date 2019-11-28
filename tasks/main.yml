@@ -1,0 +1,23 @@
+# file: postgresql_install/tasks/main.yml
+---
+- name: Yum installing PostgreSQL repo rpm
+  yum:
+    name: 'https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm'
+    state: installed
+
+- name: Yum installing client and server packages
+  yum:
+    name:
+      - 'postgresql{{ version }}'
+      - 'postgresql{{ version }}-server'
+    state: installed
+  notify:
+    - restart_postgresql
+
+- name: Initializing via initdb
+  shell: '/usr/pgsql-{{ point_release }}/bin/postgresql{{ version }}-setup initdb'
+  args:
+    creates: '/var/lib/pgsql/{{ point_release }}/data/base'
+  notify:
+    - restart_postgresql
+...

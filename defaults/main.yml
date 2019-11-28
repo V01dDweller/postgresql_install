@@ -1,0 +1,5 @@
+# file: postgresql_install/defaults/main.yml
+---
+version: '96'
+point_release: '9.6'
+...

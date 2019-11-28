@@ -1,0 +1,9 @@
+# file: postgresql_install/handlers/main.yml
+---
+- name: restart_postgresql
+  systemd:
+    name: 'postgresql-9.6'
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+
