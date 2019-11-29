@@ -56,5 +56,4 @@
     role_attr_flags: CREATEDB,NOSUPERUSER
   become: yes
   become_user: postgres
-  tags: test
 ...
