@@ -1,5 +1,22 @@
 # file: postgresql_install/tasks/main.yml
 ---
+- name: Yum installing epel-release
+  yum:
+    name: 'epel-release'
+    state: installed
+
+- name: Updating epel-release
+  yum:
+    name: 'epel-release'
+    state: latest
+
+- name: Yum installing postgresql-libs, python-psycopg2
+  yum:
+    name:
+      - 'postgresql-libs'
+      - 'python-psycopg2'
+    state: installed
+
 - name: Yum installing PostgreSQL repo rpm
   yum:
     name: 'https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm'
@@ -20,4 +37,24 @@
     creates: '/var/lib/pgsql/{{ point_release }}/data/base'
   notify:
     - restart_postgresql
+
+- name: Opening firewall port 5432
+  firewalld:
+    port: 5432/tcp
+    state: enabled
+    permanent: yes
+  notify:
+    - restart_firewalld
+
+- name: Starting PostgreSQL and restarting firewalld
+  meta: flush_handlers
+
+- name: Creating PostgreSQL role for {{ target_user }}
+  postgresql_user:
+    name: '{{ target_user }}'
+    password: '{{ target_user_password }}'
+    role_attr_flags: CREATEDB,NOSUPERUSER
+  become: yes
+  become_user: postgres
+  tags: test
 ...
