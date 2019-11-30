@@ -12,8 +12,8 @@ Requirements
 Role Variables
 --------------
 
-* **target\_user** - Postgres user name, the first user role to be created in PostgreSQL
-* **target\_user\_password** - PostgreSQL password for the above
+* **postgres\_user** - Postgres user name, the first user role to be created in PostgreSQL
+* **postgres\_user\_password** - PostgreSQL password for the above
 
 Dependencies
 ------------
@@ -41,7 +41,7 @@ Example Usage
 -------------
 
 ```cmd
-ansible-playbook postgresql_install.yml -e "target_user=jdoe target_user_password=joe'sreallystrongpassword"
+ansible-playbook postgresql_install.yml -e "postgres_user=jdoe postgres_user_password=joe'sreallystrongpassword"
 ```
 
 License
