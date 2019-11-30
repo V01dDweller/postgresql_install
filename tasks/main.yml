@@ -1,15 +1,15 @@
 # file: postgresql_install/tasks/main.yml
 ---
-- name: Yum installing epel-release
-  yum:
-    name: 'epel-release'
-    state: installed
-
-- name: Updating epel-release
-  yum:
-    name: 'epel-release'
-    state: latest
-
+#- name: Yum installing epel-release
+#  yum:
+#    name: 'epel-release'
+#    state: installed
+#
+#- name: Updating epel-release
+#  yum:
+#    name: 'epel-release'
+#    state: latest
+#
 - name: Yum installing postgresql-libs, python-psycopg2
   yum:
     name:
@@ -49,10 +49,10 @@
 - name: Starting PostgreSQL and restarting firewalld
   meta: flush_handlers
 
-- name: Creating PostgreSQL role for {{ target_user }}
+- name: Creating PostgreSQL role for {{ postgres_user }}
   postgresql_user:
-    name: '{{ target_user }}'
-    password: '{{ target_user_password }}'
+    name: '{{ postgres_user }}'
+    password: '{{ postgres_user_password }}'
     role_attr_flags: CREATEDB,NOSUPERUSER
   become: yes
   become_user: postgres
