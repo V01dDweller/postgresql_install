@@ -1,5 +1,5 @@
-Role Name
-=========
+postgresql\_install
+===================
 
 Installs PostgreSQL on EL 7 Linux.
 
