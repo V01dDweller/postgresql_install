@@ -1,7 +1,7 @@
 postgresql\_install
 ===================
 
-Installs PostgreSQL on EL 7 Linux.
+Ansible role - installs PostgreSQL on EL 7 Linux.
 
 Requirements
 ------------
@@ -19,6 +19,12 @@ Dependencies
 ------------
 
 None.
+
+Installation
+------------
+```cmd
+ansible-galaxy install git+https://github.com/V01dDweller/postgresql_install.git
+```
 
 Example Playbook
 ----------------
