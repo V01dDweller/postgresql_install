@@ -7,7 +7,7 @@ Requirements
 ------------
 
 * ssh access to your host
-* the ability to sudo to root
+* sudo to root
 
 Role Variables
 --------------
@@ -47,7 +47,7 @@ Example Usage
 -------------
 
 ```cmd
-ansible-playbook postgresql_install.yml -e "postgres_user=jdoe postgres_user_password=joe'sreallystrongpassword"
+ansible-playbook postgresql_install.yml -e "postgres_user=jdoe postgres_user_password=jdoesreallystrongpassword"
 ```
 
 License
